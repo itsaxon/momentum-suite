@@ -1,0 +1,16 @@
+# ===================================================================
+#                      开发环境配置 (dev)
+# ===================================================================
+server:
+  port: 8081 # 开发环境使用 8081 端口
+
+logging:
+  level:
+    com.momentum: debug # 开发时开启 DEBUG 日志，方便排查问题
+
+# 开发环境数据库配置 (示例)
+# spring:
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/momentum_dev?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+#     username: root
+#     password: dev_password
