@@ -33,12 +33,6 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- domain 模块 -->
-        <dependency>
-            <groupId>com.momentum</groupId>
-            <artifactId>momentum-suite-domain</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -48,6 +42,12 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
+        </dependency>
+        <!-- domain 模块 -->
+        <dependency>
+            <groupId>com.momentum</groupId>
+            <artifactId>momentum-suite-domain</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
