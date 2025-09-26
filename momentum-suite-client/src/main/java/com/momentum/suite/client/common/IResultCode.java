@@ -1,11 +1,11 @@
-package com.momentum.app.common;
+package com.momentum.suite.client.common;
 
 /**
  * 统一响应状态码接口 (契约)
  * <p>
  * 所有业务状态码枚举都应实现此接口，以确保它们都能被 ApiResponse.fail() 方法接受。
  *
- * @author Manus
+ * @author itsaxon
  */
 public interface IResultCode {
 

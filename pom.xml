@@ -4,18 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 项目坐标 -->
     <groupId>com.momentum</groupId>
     <artifactId>momentum-suite</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <!-- 父项目的打包方式必须为 pom -->
     <packaging>pom</packaging>
 
     <name>momentum-suite</name>
     <description>Momentum Suite - Parent Project</description>
+
     <modules>
         <module>momentum-suite-app</module>
+        <module>momentum-suite-client</module>
+        <module>momentum-suite-service</module>
+        <module>momentum-suite-domain</module>
+        <module>momentum-suite-infrastructure</module>
     </modules>
 
     <!-- 统一属性管理 -->
@@ -27,18 +30,16 @@
 
         <!-- 核心依赖版本 -->
         <spring-boot.version>3.5.6</spring-boot.version>
-        <!-- 新增：Lombok 版本属性 -->
         <lombok.version>1.18.34</lombok.version>
         <hutool.version>5.8.29</hutool.version>
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <validation-api.version>3.0.2</validation-api.version>
     </properties>
 
-    <!--
-        dependencyManagement: 统一管理项目中的依赖版本 。
-        子模块在引入依赖时无需指定版本号，会自动继承此处定义的版本，确保整个项目版本一致。
-    -->
+    <!-- 统一管理依赖版本 -->
     <dependencyManagement>
         <dependencies>
-            <!-- 导入 Spring Boot 官方的依赖清单 -->
+            <!-- Spring Boot Bom -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -46,7 +47,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <!-- Lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -54,31 +54,46 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
-
             <!-- hutool -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-
+            <!-- Jakarta Bean Validation API -->
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
+            <!-- MyBatis-Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <pluginManagement>
-            <!--
-                pluginManagement: 统一管理插件版本。
-                子模块使用插件时，只需提供 groupId 和 artifactId 即可。
-            -->
+            <!-- 统一管理插件版本 -->
             <plugins>
                 <!-- Spring Boot Maven 插件 -->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
+                    <executions>
+                        <execution>
+                            <id>repackage</id>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
-                <!-- 编译插件，指定JDK版本 -->
+                <!-- 编译插件 指定JDK版本 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>

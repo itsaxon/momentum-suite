@@ -1,16 +1,18 @@
-package com.momentum.app.common;
+package com.momentum.suite.client.common;
 
 import lombok.Getter;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 通用 API 响应封装类
+ * 通用响应封装
  *
- * @param <T> 响应数据的类型
- * @author Manus
+ * @author itsaxon
+ * @version v1.0 2025/09/26
  */
 @Getter
 public class ApiResponse<T> implements Serializable {
@@ -23,7 +25,7 @@ public class ApiResponse<T> implements Serializable {
     private final T data;
     private final long timestamp;
 
-    // 私有构造函数，接收任何实现了 IResultCode 接口的对象
+    // 构造函数保持私有
     private ApiResponse(IResultCode resultCode, T data) {
         this.code = resultCode.getCode();
         this.message = resultCode.getMessage();
@@ -31,7 +33,6 @@ public class ApiResponse<T> implements Serializable {
         this.timestamp = Instant.now().toEpochMilli();
     }
 
-    // 私有构造函数，用于自定义消息
     private ApiResponse(int code, String message, T data) {
         this.code = code;
         this.message = message;
@@ -39,7 +40,12 @@ public class ApiResponse<T> implements Serializable {
         this.timestamp = Instant.now().toEpochMilli();
     }
 
-    // --- 静态工厂方法 ---
+    private ApiResponse(IResultCode resultCode, T data, String message) {
+        this.code = resultCode.getCode();
+        this.message = message; // 使用传入的自定义消息
+        this.data = data;
+        this.timestamp = System.currentTimeMillis();
+    }
 
     public static <T> ApiResponse<T> success() {
         return new ApiResponse<>(ResultCode.SUCCESS, null);
@@ -49,12 +55,24 @@ public class ApiResponse<T> implements Serializable {
         return new ApiResponse<>(ResultCode.SUCCESS, data);
     }
 
-    /**
-     * 核心优势：此方法可以接收任何实现了 IResultCode 接口的枚举实例。
-     * 例如：ApiResponse.fail(ResultCode.FAILURE) 或 ApiResponse.fail(OrderResultCode.ORDER_NOT_FOUND)
-     */
     public static <T> ApiResponse<T> fail(IResultCode resultCode) {
         return new ApiResponse<>(resultCode, null);
+    }
+
+    public static <T> ApiResponse<T> failWithEmptyData(IResultCode resultCode, T emptyData) {
+        return new ApiResponse<>(resultCode, emptyData);
+    }
+
+    public static ApiResponse<java.util.Map<String, Object>> failWithEmptyMap(IResultCode resultCode) {
+        return new ApiResponse<>(resultCode, new HashMap<>());
+    }
+
+    public static ApiResponse<Map<String, Object>> failWithEmptyMap(IResultCode resultCode, String message) {
+        return new ApiResponse<>(resultCode, new HashMap<>(), message);
+    }
+
+    public static ApiResponse<java.util.List<?>> failWithEmptyList(IResultCode resultCode) {
+        return new ApiResponse<>(resultCode, new java.util.ArrayList<>());
     }
 
     public static <T> ApiResponse<T> fail(IResultCode resultCode, String message) {

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  * 应用启动监听器，在应用准备就绪后打印启动成功信息。
  *
- * @author Manus (Refined Version)
+ * @author itsaxon (Refined Version)
  */
 @Slf4j
 @Component
