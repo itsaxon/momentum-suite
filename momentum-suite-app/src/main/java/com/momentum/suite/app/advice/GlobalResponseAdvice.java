@@ -1,4 +1,4 @@
-package com.momentum.app.advice;
+package com.momentum.suite.app.advice;
 
 import cn.hutool.json.JSONUtil;
 import com.momentum.suite.client.common.ApiResponse;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @author itsaxon
  * @version v1.0 2025/09/26
  */
-@RestControllerAdvice(basePackages = "com.momentum.app.controller" )
+@RestControllerAdvice(basePackages = "com.momentum.suite.app.controller" )
 public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override

@@ -49,6 +49,24 @@
             <artifactId>momentum-suite-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- client 模块 -->
+        <dependency>
+            <groupId>com.momentum</groupId>
+            <artifactId>momentum-suite-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- MyBatis-Plus 代码生成器 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 代码生成器模板引擎 -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

@@ -1,4 +1,4 @@
-package com.momentum.app;
+package com.momentum.suite.app;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package com.momentum.app.advice;
+package com.momentum.suite.app.advice;
 
 import com.momentum.suite.client.common.ApiResponse;
 import com.momentum.suite.client.common.ResultCode;

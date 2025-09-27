@@ -1,4 +1,4 @@
-package com.momentum.suite.client.dto;
+package com.momentum.suite.client.view.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -6,13 +6,13 @@ import lombok.Data;
 
 
 /**
- * 移动登录请求
+ * 手机登录请求
  *
  * @author itsaxon
- * @version v1.0 2025/09/26
+ * @version v1.0 2025/09/27
  */
 @Data
-public class MobileLoginRequest {
+public class LoginAppMobileRequest {
 
     /**
      * 手机号
@@ -34,4 +34,3 @@ public class MobileLoginRequest {
     private String platformId;
 
 }
-

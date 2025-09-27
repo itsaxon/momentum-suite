@@ -1,4 +1,4 @@
-package com.momentum.app.listener;
+package com.momentum.suite.app.listener;
 
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.StrUtil;
@@ -29,7 +29,6 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
         String port = environment.getProperty("server.port", "8080");
         String contextPath = environment.getProperty("server.servlet.context-path", "");
 
-        // 使用 hutool 的 StrUtil.isNotBlank 替代 Spring 的 StringUtils.hasText
         if (StrUtil.isNotBlank(contextPath) && !StrUtil.startWith(contextPath, "/")) {
             contextPath = "/" + contextPath;
         }
@@ -44,10 +43,10 @@ public class ApplicationStartupListener implements ApplicationListener<Applicati
         // 打印最终版的日志格式
         log.info("\n" +
                         "---------------------------------------------------------------------------------------\n" +
-                        "  ✅  Application '{}' has started successfully! 🚀\n" +
+                        "  ✅ Application '{}' has started successfully! 🚀\n" +
                         "  \n" +
-                        "  ➡️  Local Access:   {}\n" +
-                        "  ➡️  Network Access: {}\n" +
+                        "  ➡️ Local Access:   {}\n" +
+                        "  ➡️ Network Access: {}\n" +
                         "---------------------------------------------------------------------------------------",
                 appName,
                 localAccessUrl,
