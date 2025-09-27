@@ -10,7 +10,6 @@ public class BusinessException extends RuntimeException {
     private final IResultCode resultCode;
 
     public BusinessException(IResultCode resultCode) {
-        // 使用 resultCode 的默认消息
         super(resultCode.getMessage());
         this.resultCode = resultCode;
     }

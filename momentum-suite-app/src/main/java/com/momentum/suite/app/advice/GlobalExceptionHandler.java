@@ -39,7 +39,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<Map<String, Object>> handleValidationException(MethodArgumentNotValidException ex) {
-        // 只获取第一个校验不通过的字段的错误信息
         String errorMessage = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
         log.warn("参数校验异常 (ValidationException): {}", errorMessage);
         return ApiResponse.failWithEmptyMap(ResultCode.PARAM_VALID_ERROR, errorMessage);

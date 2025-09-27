@@ -60,12 +60,6 @@
             <artifactId>momentum-suite-service</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- infrastructure 模块 -->
-        <dependency>
-            <groupId>com.momentum</groupId>
-            <artifactId>momentum-suite-infrastructure</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 
     <build>

@@ -1,4 +1,4 @@
-package com.momentum.suite.infrastructure.config;
+package com.momentum.suite.infrastructure.persistent.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -9,11 +9,9 @@ import java.time.LocalDateTime;
 
 /**
  * MyBatis-Plus 自动填充处理器
- * <p>
- * 负责自动填充 create_time, update_time, create_by, update_by 等字段。
  */
 @Slf4j
-@Component // 必须将其注册为 Spring Bean
+@Component
 public class MybatisPlusFieldHandler implements MetaObjectHandler {
 
     @Override
