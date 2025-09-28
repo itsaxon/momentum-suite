@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestControllerAdvice(basePackages = "com.momentum.app.controller")
-public class GlobalExceptionHandler {
+public class GlobalExceptionAdvice {
 
     /**
      * 处理自定义的业务异常 (BusinessException)

@@ -51,7 +51,6 @@ public class OpenImAdapter {
             throw new BusinessException(ResultCode.SERVICE_UNAVAILABLE, "外部IM服务网络异常");
         }
 
-
         JSONObject jsonObject = JSONUtil.parseObj(response);
         if (jsonObject.getInt("errCode") == 0) {
             String token = jsonObject.getJSONObject("data").getStr("token");

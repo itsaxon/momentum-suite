@@ -9,17 +9,12 @@ import lombok.Data;
  * @version v1.0 2025/09/27
  */
 @Data
-public class LoginAppMobileVo {
+public class LoginAdminVo {
 
     /**
      * 访问令牌
      */
     private String token;
-
-    /**
-     * 访问令牌
-     */
-    private String appToken;
 
     /**
      * 用户唯一编号

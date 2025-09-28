@@ -8,12 +8,14 @@ import com.momentum.suite.client.view.request.LoginAppMobileRequest;
 import com.momentum.suite.client.view.vo.LoginAppMobileVo;
 import com.momentum.suite.infrastructure.adapter.OpenImAdapter;
 import com.momentum.suite.infrastructure.persistent.po.AppUserInfoPO;
+import com.momentum.suite.infrastructure.security.JwtTokenProvider;
 import com.momentum.suite.service.AppUserInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+
 /**
  * 登录应用程序移动业务服务
  *
@@ -28,6 +30,8 @@ public class LoginAppMobileBizService {
     private final AppUserInfoService appUserInfoService;
 
     private final OpenImAdapter openImAdapter;
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     /**
      * 登录
@@ -100,8 +104,14 @@ public class LoginAppMobileBizService {
             String userToken = openImAdapter.getUserToken(adminToken, request.getPlatformId(), chatUserId);
             log.info("用户Token获取成功");
 
+            Long userId = appUserInfoPOSave.getId();
+
+            String appToken = jwtTokenProvider.generateToken(userId, nickName, "app");
+
             vo.setToken(userToken);
-            vo.setUserId(chatUserId);
+            vo.setUserID(chatUserId);
+            // TODO: 获取appToken
+            vo.setAppToken(appToken);
 
             log.info("新用户登录流程完成，手机号：{}，用户ID：{}", mobile, chatUserId);
             return vo;
@@ -116,8 +126,12 @@ public class LoginAppMobileBizService {
             String userToken = openImAdapter.getUserToken(adminToken, request.getPlatformId(), chatUserId);
             log.info("老用户Token获取成功");
 
+            String appToken = jwtTokenProvider.generateToken(appUserInfoPO.getId(), appUserInfoPO.getNickname(), "app");
+
             vo.setToken(userToken);
-            vo.setUserId(chatUserId);
+            vo.setUserID(chatUserId);
+            // TODO: 获取appToken
+            vo.setAppToken(appToken);
 
             log.info("老用户登录流程完成，手机号：{}，用户ID：{}", mobile, chatUserId);
             return vo;

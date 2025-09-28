@@ -50,6 +50,15 @@
             <artifactId>momentum-suite-infrastructure</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- Spring Security (仅需要 API，不需要完整的 Starter) -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

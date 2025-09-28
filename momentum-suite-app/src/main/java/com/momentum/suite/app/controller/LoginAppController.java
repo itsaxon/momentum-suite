@@ -5,19 +5,16 @@ import com.momentum.suite.client.view.vo.LoginAppMobileVo;
 import com.momentum.suite.service.biz.LoginAppMobileBizService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/app/login")
+@RequestMapping("/api/auth/app")
 @RequiredArgsConstructor
 public class LoginAppController {
 
     private final LoginAppMobileBizService loginAppMobileBizService;
 
-    @PostMapping("/mobile")
+    @PostMapping("/login")
     public LoginAppMobileVo login(@RequestBody @Validated LoginAppMobileRequest request) {
         return loginAppMobileBizService.login(request);
     }

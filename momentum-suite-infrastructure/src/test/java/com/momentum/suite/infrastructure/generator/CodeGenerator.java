@@ -31,7 +31,7 @@ public class CodeGenerator {
     private static final String ROOT_PACKAGE = "com.momentum.suite";
 
     // 要生成的表名 (例如: "t_user", "t_role")
-    private static final String[] TABLE_NAMES = {"t_app_user_info"};
+    private static final String[] TABLE_NAMES = {"t_admin_user_info"};
 
     // 需要移除的表前缀
     private static final String[] TABLE_PREFIX = {"t_"};
